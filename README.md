@@ -4,11 +4,11 @@ A legacy api exists for interacting with a stock system.  It returns results asy
 
 1.	Lookup the SKU and price for an apple, a banana and an orange, printed in the format:
 
-    Product: SKU: <SKU>, Price: <Price>
+    Product: <Price>
 
     e.g.
 ```
-    apple: SKU: a134, Price: 0.99
+    apple: 0.99
 ```
 
 2.	Create a new basket and add the following products (or the maximum available):

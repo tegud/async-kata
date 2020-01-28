@@ -2,6 +2,6 @@ const Api = require('mj-legacy-api');
 
 const api = new Api();
 
-api.lookupSku('apple', (err, details) => {
-  console.log(`apple: ${details.sku}`);
+api.createBasket((err, basket) => {
+  console.log('Basket Created');
 });

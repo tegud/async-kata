@@ -4,11 +4,11 @@ A legacy api exists for interacting with a stock system.  It returns results asy
 
 1.	Lookup the SKU and price for an apple, a banana and an orange, printed in the format:
 
-    Product: <Price>
+    Product: SKU: <SKU>, Price: <Price>
 
     e.g.
 ```
-    apple: 0.99
+    apple: SKU: a134, Price: 0.99
 ```
 
 2.	Create a new basket and add the following products (or the maximum available):
@@ -24,8 +24,8 @@ A legacy api exists for interacting with a stock system.  It returns results asy
     The expected output should look similar to:
 
 ```
-    Added 3 bananas 
-    Added 16 apples
+    Adding 3 banana
+    Adding 16 apple
     Order confirmed: ORD-1234
 ```
 
@@ -56,7 +56,9 @@ Product names will resolve to a Stock Keeping Unit.  Prices and Stock can only b
 #### Parameters
 
  - name: string, name of the product, case insensitive
- - callback: function to call on lookup completion, function will be called with the parameters: error, sku.  If successful, error will be null/undefined.
+ - callback: function to call on lookup completion, function will be called with the parameters:
+      - error - JS Error object, if successful, error will be undefined.
+      - details - object with properties: sku (string)
 
 #### Errors
 
@@ -69,7 +71,9 @@ On failure to locate product, an error with the message: `PRODUCT_NOT_FOUND` wil
 #### Parameters
 
  - sku: string, Product SKU, **NOT** product name
- - callback: function to call on lookup completion, function will be called with the parameters: error, price.  If successful, error will be null/undefined.
+ - callback: function to call on lookup completion, function will be called with the parameters:
+      - error - JS Error object, if successful, error will be undefined.
+      - details - object with properties: sku (string), price (float)
 
 #### Errors
 
@@ -82,7 +86,9 @@ On failure to locate product, an error with the message: `PRODUCT_NOT_FOUND` wil
 #### Parameters
 
  - sku: string, Product SKU, **NOT** product name
- - callback: function to call on lookup completion, function will be called with the parameters: error, quantity remaining.  If successful, error will be null/undefined.
+ - callback: function to call on lookup completion, function will be called with the parameters:
+      - error - JS Error object, if successful, error will be undefined.
+      - details - object with properties: sku (string), stock (integer)
 
 #### Errors
 
@@ -95,7 +101,9 @@ On failure to locate product, an error with the message: `PRODUCT_NOT_FOUND` wil
 #### Parameters
 
  - sku: string, Product SKU, **NOT** product name
- - callback: function to call on lookup completion, function will be called with the parameters: error, basket object.  If successful, error will be null/undefined.
+ - callback: function to call on basket creation, function will be called with the parameters:
+      - error - JS Error object, if successful, error will be undefined.
+      - basket - basket object (see below)
 
 #### Errors
 
@@ -109,7 +117,8 @@ On failure to locate product, an error with the message: `PRODUCT_NOT_FOUND` wil
 
  - sku: string, Product SKU, **NOT** product name
  - quantity: integer, number of products to add
- - callback: function to call on lookup completion, function will be called with the parameters: error  If successful, error will be null/undefined.
+ - callback: function to call on operation completion, function will be called with the parameters:
+      - error - JS Error object, if successful, error will be undefined.
 
 #### Errors
 
@@ -121,4 +130,6 @@ On insufficient stock, an error with the message: `NOT_ENOUGH_STOCK` will be ret
 
 `basket.confirm(callback);`
 
- - callback: function to call on lookup completion, function will be called with the parameters: error  If successful, error will be null/undefined.
+ - callback: function to call on operation completion, function will be called with the parameters:
+      - error - JS Error object, if successful, error will be undefined.
+      - reference - string of the order reference

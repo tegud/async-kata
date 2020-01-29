@@ -36,7 +36,7 @@ A legacy api exists for interacting with a stock system.  It returns results asy
 To install the API:
 
 ```
-npm install <PACKAGE NAME>
+npm install mj-legacy-api
 ```
 
 In your code to create an instance of the API Client:
